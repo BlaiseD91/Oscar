@@ -126,4 +126,30 @@ public class Database {
             } 
         }
     }
+    
+    public void winner(){
+        //Listázza ki azoknak a filmeknek minden adatát, amelyek minden jelölést megnyertek!
+        //A listát rendezze év szerint, ezen belül cím szerint növekvõ sorrendbe!
+        if(this.conn != null){
+            String sql = "SELECT * FROM filmek WHERE dij=jelol ORDER BY ev, cim;";
+            Statement stmt = null;
+            ResultSet rs = null;
+            
+            try { stmt = conn.createStatement();
+            } catch (SQLException ex) { System.out.println("Baj van! Hiba a statement létrehozásában! " + ex); }
+            
+            if(stmt != null){
+                try {    
+                    rs = stmt.executeQuery(sql);
+                    while(rs.next()){
+                        System.out.println(rs.getString("azon")
+                                + " | " + rs.getString("cim")
+                                + " | " + rs.getInt("ev")
+                                + " | " + rs.getInt("dij")
+                                + " | " + rs.getInt("jelol"));
+                    }
+                } catch(SQLException ex){ System.out.println("Baj van! Hiba a query futtatásánál! " + ex); }
+            } 
+        }
+    }
 }
