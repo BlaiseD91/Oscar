@@ -177,4 +177,27 @@ public class Database {
             } 
         }
     }
+    
+    public void likeThe(){
+        //Készítsen listát azokról a filmcímekrõl, melyek a The szóval kezdõdnek! Rendezze a listát névsorba!
+        if(this.conn != null){
+            String sql = "SELECT cim FROM filmek WHERE cim LIKE 'The%' ORDER BY cim;";
+            Statement stmt = null;
+            ResultSet rs;
+            
+            try {
+                stmt = conn.createStatement();
+                System.out.printf("%-50s\n", "Cím");
+            } catch (SQLException ex) { System.out.println("Baj van! Hiba a statement létrehozásában! " + ex); }
+            
+            if(stmt != null){
+                try {    
+                    rs = stmt.executeQuery(sql);
+                    while(rs.next()){
+                        System.out.printf("%-50s\n",rs.getString("cim"));
+                    }
+                } catch(SQLException ex){ System.out.println("Baj van! Hiba a query futtatásánál! " + ex); }
+            } 
+        }
+    }
 }
