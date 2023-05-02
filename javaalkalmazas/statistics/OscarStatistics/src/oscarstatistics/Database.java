@@ -129,6 +129,30 @@ public class Database {
         }
     }
     
+    public void birthYearTops(){
+        //Listázza ki azokat a filmeket, amelyek az Ön vagy édesanyja születési évében kaptak több, mint 4 jelölést!
+        //Jelenítse meg a filmek címét névsorban! Kezelje az esetleges holtversenyt!
+        if(this.conn != null){
+            String sql = "SELECT cim, jelol FROM filmek WHERE (ev=1991 OR ev=1973) AND jelol>4 ORDER BY cim;";
+            Statement stmt = null;
+            ResultSet rs;
+            
+            try {
+                stmt = conn.createStatement();
+                System.out.printf("%50s | %-9s\n", "Cím", "Jelölések");
+            } catch (SQLException ex) { System.out.println("Baj van! Hiba a statement létrehozásában! " + ex); }
+            
+            if(stmt != null){
+                try {    
+                    rs = stmt.executeQuery(sql);
+                    while(rs.next()){
+                        System.out.printf("%50s | %-9d\n", rs.getString("cim"), rs.getInt("jelol"));
+                    }
+                } catch(SQLException ex){ System.out.println("Baj van! Hiba a query futtatásánál! " + ex); }
+            } 
+        }
+    }
+    
     public void winner(){
         //Listázza ki azoknak a filmeknek minden adatát, amelyek minden jelölést megnyertek!
         //A listát rendezze év szerint, ezen belül cím szerint növekvõ sorrendbe!
