@@ -19,7 +19,7 @@ public class OscarStatistics {
         System.out.println("4. FELADAT: ");
         //System.out.println("5. FELADAT: "); db.likeKing();
         //System.out.println("6. FELADAT: "); db.winner();
-        System.out.println("7. FELADAT: ");
+        System.out.println("7. FELADAT: "); db.worldWarII();
         System.out.println("8. FELADAT: ");
         System.out.println("9. FELADAT: ");
         System.out.println("10. FELADAT: ");

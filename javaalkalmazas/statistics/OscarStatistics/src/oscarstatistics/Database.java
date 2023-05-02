@@ -135,7 +135,7 @@ public class Database {
         if(this.conn != null){
             String sql = "SELECT * FROM filmek WHERE dij=jelol ORDER BY ev, cim;";
             Statement stmt = null;
-            ResultSet rs = null;
+            ResultSet rs;
             
             try {
                 stmt = conn.createStatement();
@@ -148,6 +148,30 @@ public class Database {
                     while(rs.next()){
                         System.out.printf("%9s | %-50s | %-4d | %-5d | %-8d\n", rs.getString("azon"),rs.getString("cim"),
                                 rs.getInt("ev"), rs.getInt("dij"), rs.getInt("jelol"));
+                    }
+                } catch(SQLException ex){ System.out.println("Baj van! Hiba a query futtatásánál! " + ex); }
+            } 
+        }
+    }
+    
+    public void worldWarII(){
+        //Listázza ki a II. világháború alatt legalább 3 Oscar-díjat kapott filmek címét és a díjazás évét!
+        //A listát rendezze a díjazás éve, ezen belül a film címe szerint növekvõ sorrendbe!
+        if(this.conn != null){
+            String sql = "SELECT cim, ev FROM filmek WHERE (ev BETWEEN 1939 AND 1945) AND dij >=3 ORDER BY ev, cim;";
+            Statement stmt = null;
+            ResultSet rs;
+            
+            try {
+                stmt = conn.createStatement();
+                System.out.printf("%50s | %-4s\n", "Cím","Év");
+            } catch (SQLException ex) { System.out.println("Baj van! Hiba a statement létrehozásában! " + ex); }
+            
+            if(stmt != null){
+                try {    
+                    rs = stmt.executeQuery(sql);
+                    while(rs.next()){
+                        System.out.printf("%50s | %-4d\n",rs.getString("cim"), rs.getInt("ev"));
                     }
                 } catch(SQLException ex){ System.out.println("Baj van! Hiba a query futtatásánál! " + ex); }
             } 
