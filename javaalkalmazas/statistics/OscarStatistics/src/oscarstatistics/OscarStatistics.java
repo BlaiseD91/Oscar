@@ -13,9 +13,8 @@ public class OscarStatistics {
         Database db = new Database(url, databaseName, user, pass);
         
         
-        System.out.println("1. FELADAT: "); db.showAll();
-        
-        System.out.println("2. FELADAT: ");
+        //System.out.println("1. FELADAT: "); db.showAll();
+        //System.out.println("2. FELADAT: "); db.after1950();
         System.out.println("3. FELADAT: ");
         System.out.println("4. FELADAT: ");
         System.out.println("5. FELADAT: ");

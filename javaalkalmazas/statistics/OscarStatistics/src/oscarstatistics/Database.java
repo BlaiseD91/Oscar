@@ -56,4 +56,27 @@ public class Database {
             } 
         }
     }
+    
+    public void after1950(){
+        //Listázza ki az 1950 után legalább 3 Oscar-díjjal jutalmazott filmek címét, a díjak és jelölések számát! A listát rendezze a filmek címe szerint névsorba!
+        if(this.conn != null){
+            String sql = "SELECT cim, dij, jelol FROM filmek WHERE dij > 3 ORDER BY cim;";
+            Statement stmt = null;
+            ResultSet rs = null;
+            
+            try { stmt = conn.createStatement();
+            } catch (SQLException ex) { System.out.println("Baj van! Hiba a statement létrehozásában! " + ex); }
+            
+            if(stmt != null){
+                try {    
+                    rs = stmt.executeQuery(sql);
+                    while(rs.next()){
+                        System.out.println(rs.getString("cim")
+                                + " | " + rs.getInt("dij")
+                                + " | " + rs.getInt("jelol"));
+                    }
+                } catch(SQLException ex){ System.out.println("Baj van! Hiba a query futtatásánál! " + ex); }
+            } 
+        }
+    }
 }
