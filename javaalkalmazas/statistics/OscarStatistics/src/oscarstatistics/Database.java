@@ -101,4 +101,29 @@ public class Database {
             } 
         }
     }
+    
+    public void likeKing(){
+        //Listázza ki az összes olyan film adatát, amely címében szerepel a King szó vagy szórészlet!
+        //Jelenítse meg a film címét, a jelölések és az elnyert díjak számát!
+        //Rendezze a listát a jelölések, ezen belül a díjak száma szerint csökkenõ sorrendbe!
+        if(this.conn != null){
+            String sql = "SELECT cim, jelol, dij FROM filmek WHERE cim LIKE '%King%' ORDER BY jelol DESC, dij DESC;";
+            Statement stmt = null;
+            ResultSet rs = null;
+            
+            try { stmt = conn.createStatement();
+            } catch (SQLException ex) { System.out.println("Baj van! Hiba a statement létrehozásában! " + ex); }
+            
+            if(stmt != null){
+                try {    
+                    rs = stmt.executeQuery(sql);
+                    while(rs.next()){
+                        System.out.println(rs.getString("cim")
+                                + " | " + rs.getInt("jelol")
+                                + " | " + rs.getInt("dij"));
+                    }
+                } catch(SQLException ex){ System.out.println("Baj van! Hiba a query futtatásánál! " + ex); }
+            } 
+        }
+    }
 }

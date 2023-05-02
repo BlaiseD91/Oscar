@@ -17,7 +17,7 @@ public class OscarStatistics {
         //System.out.println("2. FELADAT: "); db.after1950();
         //System.out.println("3. FELADAT: "); db.top5Nom();
         System.out.println("4. FELADAT: ");
-        System.out.println("5. FELADAT: ");
+        //System.out.println("5. FELADAT: "); db.likeKing();
         System.out.println("6. FELADAT: ");
         System.out.println("7. FELADAT: ");
         System.out.println("8. FELADAT: ");
