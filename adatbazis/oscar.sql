@@ -30,7 +30,7 @@ USE `oscar`;
 
 CREATE TABLE `filmek` (
   `azon` varchar(15) COLLATE utf8_hungarian_ci NOT NULL,
-  `cim` varchar(30) COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `cim` varchar(255) COLLATE utf8_hungarian_ci DEFAULT NULL,
   `ev` int(4) DEFAULT NULL,
   `dij` int(2) DEFAULT NULL,
   `jelol` int(2) DEFAULT NULL
