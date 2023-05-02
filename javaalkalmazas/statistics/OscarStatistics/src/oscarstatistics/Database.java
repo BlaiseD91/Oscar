@@ -79,4 +79,26 @@ public class Database {
             } 
         }
     }
+    
+    public void top5Nom(){
+        //Készítsen listát az 5 legtöbb jelölést kapott film címérõl, a díjazás évérõl!
+        if(this.conn != null){
+            String sql = "SELECT cim, ev FROM filmek ORDER BY jelol DESC LIMIT 5;";
+            Statement stmt = null;
+            ResultSet rs = null;
+            
+            try { stmt = conn.createStatement();
+            } catch (SQLException ex) { System.out.println("Baj van! Hiba a statement létrehozásában! " + ex); }
+            
+            if(stmt != null){
+                try {    
+                    rs = stmt.executeQuery(sql);
+                    while(rs.next()){
+                        System.out.println(rs.getString("cim")
+                                + " | " + rs.getInt("ev"));
+                    }
+                } catch(SQLException ex){ System.out.println("Baj van! Hiba a query futtatásánál! " + ex); }
+            } 
+        }
+    }
 }
