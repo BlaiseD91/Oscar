@@ -16,13 +16,13 @@ public class OscarStatistics {
         //System.out.println("1. FELADAT: "); db.showAll();
         //System.out.println("2. FELADAT: "); db.after1950();
         //System.out.println("3. FELADAT: "); db.top5Nom();
-        System.out.println("4. FELADAT: ");
+        System.out.println("4. FELADAT: "); db.top5After2000();
         //System.out.println("5. FELADAT: "); db.likeKing();
         //System.out.println("6. FELADAT: "); db.winner();
         //System.out.println("7. FELADAT: "); db.worldWarII();
         System.out.println("8. FELADAT: ");
         //System.out.println("9. FELADAT: "); db.likeThe();
-        System.out.println("10. FELADAT: "); db.winnerAfter1960();
+        //System.out.println("10. FELADAT: "); db.winnerAfter1960();
     }
     
 }

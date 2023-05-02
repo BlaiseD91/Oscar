@@ -225,4 +225,33 @@ public class Database {
             } 
         }
     }
+    
+    public void top5After2000(){
+        //Készítsen listát az 2000 után 5 legtöbb díjat kapott film címérõl és a díjak számáról!
+        //Kezelje az esetleges holtversenyt!
+        if(this.conn != null){
+            String sql = "SELECT cim, dij FROM filmek WHERE ev > 2000 ORDER BY dij DESC;";
+            Statement stmt = null;
+            ResultSet rs;
+            int awards = 0;
+            int movies = 0;
+            
+            try {
+                stmt = conn.createStatement();
+                System.out.printf("%50s | %-5s\n", "Cím", "Díjak");
+            } catch (SQLException ex) { System.out.println("Baj van! Hiba a statement létrehozásában! " + ex); }
+            
+            if(stmt != null){
+                try {    
+                    rs = stmt.executeQuery(sql);
+                    while(rs.next()){
+                        if(movies >=5 && awards != rs.getInt("dij")) break;
+                        System.out.printf("%50s | %-5d\n", rs.getString("cim"), rs.getInt("dij"));
+                        movies++;
+                        awards = rs.getInt("dij");
+                    }
+                } catch(SQLException ex){ System.out.println("Baj van! Hiba a query futtatásánál! " + ex); }
+            } 
+        }
+    }
 }
