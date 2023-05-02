@@ -40,17 +40,18 @@ public class Database {
         if(this.conn != null){
             String sql = "SELECT cim, dij FROM filmek ORDER BY jelol DESC, cim;";
             Statement stmt = null;
-            ResultSet rs = null;
+            ResultSet rs;
             
-            try { stmt = conn.createStatement();
+            try {
+                stmt = conn.createStatement();
+                System.out.printf("%50s | %-5s\n", "Cím", "Díjak");
             } catch (SQLException ex) { System.out.println("Baj van! Hiba a statement létrehozásában! " + ex); }
             
             if(stmt != null){
                 try {    
                     rs = stmt.executeQuery(sql);
                     while(rs.next()){
-                        System.out.println(rs.getString("cim")
-                                + " | " + rs.getInt("dij"));
+                        System.out.printf("%50s | %-10d\n", rs.getString("cim"), rs.getInt("dij"));
                     }
                 } catch(SQLException ex){ System.out.println("Baj van! Hiba a query futtatásánál! " + ex); }
             } 
@@ -62,18 +63,18 @@ public class Database {
         if(this.conn != null){
             String sql = "SELECT cim, dij, jelol FROM filmek WHERE dij > 3 ORDER BY cim;";
             Statement stmt = null;
-            ResultSet rs = null;
+            ResultSet rs;
             
-            try { stmt = conn.createStatement();
+            try {
+                stmt = conn.createStatement();
+                System.out.printf("%50s | %-5s | %-2s\n", "Cím", "Díjak", "Jelölések");
             } catch (SQLException ex) { System.out.println("Baj van! Hiba a statement létrehozásában! " + ex); }
             
             if(stmt != null){
                 try {    
                     rs = stmt.executeQuery(sql);
                     while(rs.next()){
-                        System.out.println(rs.getString("cim")
-                                + " | " + rs.getInt("dij")
-                                + " | " + rs.getInt("jelol"));
+                        System.out.printf("%50s | %-5d | %-2d\n", rs.getString("cim"), rs.getInt("dij"), rs.getInt("jelol"));
                     }
                 } catch(SQLException ex){ System.out.println("Baj van! Hiba a query futtatásánál! " + ex); }
             } 
@@ -85,17 +86,18 @@ public class Database {
         if(this.conn != null){
             String sql = "SELECT cim, ev FROM filmek ORDER BY jelol DESC LIMIT 5;";
             Statement stmt = null;
-            ResultSet rs = null;
+            ResultSet rs;
             
-            try { stmt = conn.createStatement();
+            try {
+                stmt = conn.createStatement();
+                System.out.printf("%50s | %-4s\n", "Cím", "Év");
             } catch (SQLException ex) { System.out.println("Baj van! Hiba a statement létrehozásában! " + ex); }
-            
+
             if(stmt != null){
                 try {    
                     rs = stmt.executeQuery(sql);
                     while(rs.next()){
-                        System.out.println(rs.getString("cim")
-                                + " | " + rs.getInt("ev"));
+                        System.out.printf("%50s | %-4d\n", rs.getString("cim"), rs.getInt("ev"));
                     }
                 } catch(SQLException ex){ System.out.println("Baj van! Hiba a query futtatásánál! " + ex); }
             } 
@@ -109,18 +111,18 @@ public class Database {
         if(this.conn != null){
             String sql = "SELECT cim, jelol, dij FROM filmek WHERE cim LIKE '%King%' ORDER BY jelol DESC, dij DESC;";
             Statement stmt = null;
-            ResultSet rs = null;
+            ResultSet rs;
             
-            try { stmt = conn.createStatement();
+            try {
+                stmt = conn.createStatement();
+                System.out.printf("%50s | %-9s | %-2s\n", "Cím", "Jelölések", "Díjak");
             } catch (SQLException ex) { System.out.println("Baj van! Hiba a statement létrehozásában! " + ex); }
             
             if(stmt != null){
                 try {    
                     rs = stmt.executeQuery(sql);
                     while(rs.next()){
-                        System.out.println(rs.getString("cim")
-                                + " | " + rs.getInt("jelol")
-                                + " | " + rs.getInt("dij"));
+                        System.out.printf("%50s | %-9d | %-2d\n", rs.getString("cim"), rs.getInt("jelol"), rs.getInt("dij"));
                     }
                 } catch(SQLException ex){ System.out.println("Baj van! Hiba a query futtatásánál! " + ex); }
             } 
@@ -135,18 +137,17 @@ public class Database {
             Statement stmt = null;
             ResultSet rs = null;
             
-            try { stmt = conn.createStatement();
+            try {
+                stmt = conn.createStatement();
+                System.out.printf("%9s | %-50s | %-4s | %-5s | %-8s\n", "Azonosító","Cím","Év", "Díjak", "Jelölések");
             } catch (SQLException ex) { System.out.println("Baj van! Hiba a statement létrehozásában! " + ex); }
             
             if(stmt != null){
                 try {    
                     rs = stmt.executeQuery(sql);
                     while(rs.next()){
-                        System.out.println(rs.getString("azon")
-                                + " | " + rs.getString("cim")
-                                + " | " + rs.getInt("ev")
-                                + " | " + rs.getInt("dij")
-                                + " | " + rs.getInt("jelol"));
+                        System.out.printf("%9s | %-50s | %-4d | %-5d | %-8d\n", rs.getString("azon"),rs.getString("cim"),
+                                rs.getInt("ev"), rs.getInt("dij"), rs.getInt("jelol"));
                     }
                 } catch(SQLException ex){ System.out.println("Baj van! Hiba a query futtatásánál! " + ex); }
             } 
