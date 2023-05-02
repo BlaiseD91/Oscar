@@ -200,4 +200,29 @@ public class Database {
             } 
         }
     }
+    
+    public void winnerAfter1960(){
+        //Listázza ki azoknak a filmeknek minden adatát, melyek 1960 után készültek és minden jelölést megnyertek!
+        //Rendezze a listát a jelölés és ev szerint csökkenõ sorrendbe!
+        if(this.conn != null){
+            String sql = "SELECT * FROM filmek WHERE ev > 1960 AND dij=jelol ORDER BY ev DESC;";
+            Statement stmt = null;
+            ResultSet rs;
+            
+            try {
+                stmt = conn.createStatement();
+                System.out.printf("%9s | %-50s | %-4s | %-5s | %-8s\n", "Azonosító","Cím","Év", "Díjak", "Jelölések");
+            } catch (SQLException ex) { System.out.println("Baj van! Hiba a statement létrehozásában! " + ex); }
+            
+            if(stmt != null){
+                try {    
+                    rs = stmt.executeQuery(sql);
+                    while(rs.next()){
+                        System.out.printf("%9s | %-50s | %-4d | %-5d | %-8d\n", rs.getString("azon"),rs.getString("cim"),
+                                rs.getInt("ev"), rs.getInt("dij"), rs.getInt("jelol"));
+                    }
+                } catch(SQLException ex){ System.out.println("Baj van! Hiba a query futtatásánál! " + ex); }
+            } 
+        }
+    }
 }

@@ -22,7 +22,7 @@ public class OscarStatistics {
         //System.out.println("7. FELADAT: "); db.worldWarII();
         System.out.println("8. FELADAT: ");
         //System.out.println("9. FELADAT: "); db.likeThe();
-        System.out.println("10. FELADAT: ");
+        System.out.println("10. FELADAT: "); db.winnerAfter1960();
     }
     
 }
