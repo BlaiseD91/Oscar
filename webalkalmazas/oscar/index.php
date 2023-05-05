@@ -54,10 +54,8 @@
                             <td><?php print($sor["dij"]); ?></td>
                             <td><?php print($sor["jelol"]); ?></td>
                             <td>
-                                <button type="button" class="btn btn-warning" id="update"><img src="img/update.svg" alt="Módosítás"></button>
-                                <!-- TODO: update function -->
-                                <button type="button" class="btn btn-danger" id="del"><img src="img/delete.svg" alt="Törlés"></button>
-                                <!-- TODO: delete function -->
+                                <a href="update.php?azon=<?php print $sor['azon'] ?>" class="btn btn-warning"><img src="img/update.svg" alt="Módosítás"></a>                     
+                                <a href="delete.php?azon=<?php print $sor['azon'] ?>" class="btn btn-danger"><img src="img/delete.svg" alt="Törlés"></a>
                             </td>
                         </tr>
                     <?php 
@@ -67,6 +65,7 @@
             </table>
         </div>
     </div>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
